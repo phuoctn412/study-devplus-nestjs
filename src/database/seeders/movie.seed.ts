@@ -18,22 +18,22 @@ export class MovieSeeder implements Seeder {
     const movies = [
       {
         name: 'Spider-man: Accross the spider-verse',
-        gender: 'action',
+        genre: 'action',
         year: 2023,
       },
       {
         name: 'Doctor Strange: In the Multiverse of Madness',
-        gender: 'action',
+        genre: 'action',
         year: 2022,
       },
       {
         name: 'Titanic',
-        gender: 'drama',
+        genre: 'drama',
         year: 1997,
       },
       {
         name: "Harry Potter and the Philosopher's Stone",
-        gender: 'fantasy',
+        genre: 'fantasy',
         year: 2001,
       },
     ];

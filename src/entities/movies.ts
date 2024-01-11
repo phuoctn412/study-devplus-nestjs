@@ -7,7 +7,7 @@ export class MovieEntity extends AbstractEntity {
   name: string;
 
   @Column({ type: 'varchar', length: 255 })
-  gender: string;
+  genre: string;
 
   @Column({ type: 'int' })
   year: number;
