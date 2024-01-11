@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - sudo docker compose build
+    silent: true
+  up: 
+    cmds:
+    - sudo docker compose up --build
+    silent: true
+  down: 
+    cmds: 
+    - sudo docker compose down
+    silent: true
