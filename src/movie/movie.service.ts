@@ -16,7 +16,10 @@ export class MovieService {
   ) {}
 
   async GetAllMovies(): Promise<ResponseItem<GetMovieItemResponse[]>> {
-    const movies: any = await this.movieRepository.find();
+    const movies: any = await this.movieRepository
+      .createQueryBuilder('movie')
+      .select(['movie.name', 'movie.genre', 'movie.year', 'movie.createAt'])
+      .getMany();
     return new ResponseItem(movies, 'Successfully');
   }
 
@@ -31,8 +34,8 @@ export class MovieService {
   ): Promise<ResponsePaginate<GetMovieItemResponse>> {
     const movies: any = this.movieRepository
       .createQueryBuilder('movie')
+      .select(['movie.name', 'movie.genre', 'movie.year', 'movie.createAt'])
       .where('movie.deletedAt IS NULL')
-      .select('')
       .skip(params.skip)
       .take(params.take);
 
@@ -51,7 +54,11 @@ export class MovieService {
   }
 
   async GetMovieById(id: number): Promise<ResponseItem<GetMovieItemResponse>> {
-    const existingMovie: any = await this.movieRepository.findOneBy({ id });
+    const existingMovie: any = await this.movieRepository
+      .createQueryBuilder('movie')
+      .select(['movie.name', 'movie.genre', 'movie.year', 'movie.createAt'])
+      .where({ id })
+      .getOne();
     if (!existingMovie) throw new BadRequestException('Movie not found');
     return new ResponseItem(existingMovie, 'Successfully');
   }
