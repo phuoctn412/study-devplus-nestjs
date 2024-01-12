@@ -25,6 +25,7 @@
     "strictBindCallApply": false,
     "strictNullChecks": false,
     "target": "es2017",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
 }

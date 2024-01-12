@@ -32,6 +32,7 @@ export class MovieService {
     const movies: any = this.movieRepository
       .createQueryBuilder('movie')
       .where('movie.deletedAt IS NULL')
+      .select('')
       .skip(params.skip)
       .take(params.take);
 
