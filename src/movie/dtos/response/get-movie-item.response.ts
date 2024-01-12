@@ -1,6 +1,4 @@
-import { Expose, plainToClass } from 'class-transformer';
-
-import { MovieEntity } from '@entities';
+import { Expose } from 'class-transformer';
 
 export class GetMovieItemResponse {
   @Expose()
@@ -17,8 +15,4 @@ export class GetMovieItemResponse {
 
   @Expose()
   createdAt: Date;
-
-  static fromEntity(entity: MovieEntity): GetMovieItemResponse {
-    return plainToClass(GetMovieItemResponse, entity);
-  }
 }

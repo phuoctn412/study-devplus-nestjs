@@ -1,5 +1,6 @@
-import { AbstractEntity } from '@config/entities/abstract.entity';
 import { Column, Entity } from 'typeorm';
+
+import { AbstractEntity } from '@config/entities/abstract.entity';
 
 @Entity('movies')
 export class MovieEntity extends AbstractEntity {

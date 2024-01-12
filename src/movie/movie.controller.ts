@@ -1,6 +1,15 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 
-import { ResponsePaginate } from '@common';
+import { ResponseItem, ResponsePaginate } from '@common';
 import { CreateMovieParam } from './dtos/request/create-movie.param';
 import { GetMoviesQuery } from './dtos/request/get-movies.query';
 import { MovieService } from './movie.service';
@@ -11,7 +20,7 @@ export class MovieController {
   constructor(private movieService: MovieService) {}
 
   @Get('/all')
-  async GetAllMovies(): Promise<GetMovieItemResponse[]> {
+  async GetAllMovies(): Promise<ResponseItem<GetMovieItemResponse[]>> {
     const result = await this.movieService.GetAllMovies();
     return result;
   }
@@ -24,11 +33,26 @@ export class MovieController {
     return result;
   }
 
+  @Get(':id')
+  async GetMovieById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ResponseItem<GetMovieItemResponse>> {
+    const result = await this.movieService.GetMovieById(id);
+    return result;
+  }
+
   @Post()
   async CreateMovie(
     @Body() params: CreateMovieParam,
   ): Promise<GetMovieItemResponse> {
     const result = await this.movieService.CreateMovie(params);
     return result;
+  }
+
+  @Delete(':id')
+  async DeleteMovie(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ResponseItem<string>> {
+    return await this.movieService.DeleteMovie(id);
   }
 }
